@@ -143,6 +143,7 @@ class LinkedList {
 }
 
 // TEST
+
 const linkedList = new LinkedList()
 linkedList.push(2)
 linkedList.push(3)
