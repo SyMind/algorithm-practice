@@ -81,7 +81,7 @@ class HashTable {
         // if (list) {
         //     return list.find(pair => pair.key === key)
         // }
-        // return undefined
+        // return
 
         // 线性探查
         let index = position
