@@ -106,7 +106,7 @@ class BinarySearchTree {
 
     min() {
         if (this.root == null) {
-            return;
+            return null;
         }
 
         let current = this.root
@@ -116,7 +116,7 @@ class BinarySearchTree {
 
     max() {
         if (this.root == null) {
-            return;
+            return null;
         }
 
         let current = this.root
@@ -124,7 +124,40 @@ class BinarySearchTree {
         return current.key
     }
 
+    minNode(node) {
+        if (!node) {
+            return null
+        }
+
+        if (node.right) {
+            return this.minNode(node.right)
+        }
+
+        return node.value
+    }
+
     remove(key) {
+        this.root = this.removeNode(this.root, key)
+    }
+
+    removeNode(node, key) {
+        if (!node) {
+            return null
+        } if (this.compareFn(node.key, key) > 0) {
+            return this.removeNode(node.right, key)
+        } else if (this.compareFn(node.key, key) < 0) {
+            return this.removeNode(node.left, key)
+        } else {
+            if (node.left == null) {
+                return node.right
+            } else if (node.right == null) {
+                return node.left
+            } else {
+                const rightMinNode = this.minNode(node.right)
+                rightMinNode.right = this.removeNode(node.right, rightMinNode.key)
+                return rightMinNode
+            }
+        }
     }
 }
 
